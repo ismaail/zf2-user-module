@@ -9,6 +9,9 @@ use Zend\Form\Form;
  */
 class LoginForm extends Form
 {
+    /**
+     * @param string $name
+     */
     public function __construct($name = 'Login')
     {
         parent::__construct($name);

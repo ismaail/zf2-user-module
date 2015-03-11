@@ -11,6 +11,11 @@ use Zend\Di\Di;
  */
 class UserFactory implements FactoryInterface
 {
+    /**
+     * @param  ServiceLocatorInterface $sm
+     *
+     * @return User\Model\User
+     */
     public function createService(ServiceLocatorInterface $sm)
     {
         $di = new Di();

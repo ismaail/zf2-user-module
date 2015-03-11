@@ -4,6 +4,10 @@ namespace User\Model;
 use Application\Model\AbstractModel;
 use Application\Model\Exception\ModelException;
 
+/**
+ * Class User
+ * @package  User\Model
+ */
 class User extends AbstractModel
 {
     protected $entityName = 'User\Entity\User';

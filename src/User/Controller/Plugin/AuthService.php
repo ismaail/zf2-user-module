@@ -14,6 +14,9 @@ class AuthService extends AbstractPlugin
      */
     protected $authService;
 
+    /**
+     * @return \User\Authentication\Auth
+     */
     public function __invoke()
     {
         if (! $this->authService) {

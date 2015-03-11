@@ -17,6 +17,11 @@ class LoginFilter implements InputFilterAwareInterface
      */
     protected $inputFilter;
 
+    /**
+     * @param InputFilterInterface $inputFilter
+     *
+     * @throws \Exception
+     */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
         throw new \Exception("Not used");
