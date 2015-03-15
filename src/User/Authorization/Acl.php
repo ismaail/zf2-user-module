@@ -4,6 +4,7 @@ namespace User\Authorization;
 use Zend\Permissions\Acl\Acl as ZendAcl;
 use Zend\Permissions\Acl\Role\GenericRole as Role;
 use Zend\Permissions\Acl\Resource\GenericResource as Resource;
+use User\Authorization\Exception\AclException;
 
 /**
  * Class Acl
@@ -30,7 +31,7 @@ class Acl extends ZendAcl
         if (! isset($config['roles'])
             || ! isset($config['resources'])
         ) {
-            throw new \Exception('Invalid ACL Configuration, no rules/resources');
+            throw new AclException('Invalid ACL Configuration, no rules/resources');
         }
 
         $roles = $config['roles'];

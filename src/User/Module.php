@@ -5,7 +5,7 @@ use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch;
 use User\Authentication\AuthStorage;
 use User\Authorization\Acl;
-use User\Exception\UserException;
+use User\Authorization\Exception\AclException;
 
 /**
  * Class Module
@@ -28,8 +28,6 @@ class Module
 
     /**
      * @param MvcEvent $event
-     *
-     * @throws UserException
      */
     public function setupAclAuth(MvcEvent $event)
     {
@@ -64,20 +62,20 @@ class Module
      *
      * @return bool
      *
-     * @throws UserException
+     * @throws AclException
      *
      * @todo Use cache
      */
     public function isAclAllowed($config, $role, $routeParams)
     {
         if (! array_key_exists($role, $config['roles'])) {
-            throw new UserException(sprintf("Role %s don't exist in the allowed roles list", $role));
+            throw new AclException(sprintf("Role %s don't exist in the allowed roles list", $role));
         }
 
         $acl = new Acl($config);
 
         if (! $acl->hasRole($role)) {
-            throw new UserException(sprintf('Role %s not valid', $role));
+            throw new AclException(sprintf('Role %s not valid', $role));
         }
 
         $isAllowed = false;
