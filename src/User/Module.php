@@ -31,12 +31,19 @@ class Module
      */
     public function setupAclAuth(MvcEvent $event)
     {
-        $config = $event->getApplication()->getServiceManager()->get('config');
+        $config      = $event->getApplication()->getServiceManager()->get('config');
+        $routeParams = $this->getRouteParams($event->getRouteMatch());
+
+        if (isset($config['acl']['skip_namespace'])) {
+            if (in_array($routeParams['namespace'], $config['acl']['skip_namespace'])) {
+                return;
+            }
+        }
+
         $role   = $config['acl']['default_role'];
 
         // Get the namespace to use with auth
         $storageNamespace = $config['auth_storage']['default'];
-        $routeParams      = $this->getRouteParams($event->getRouteMatch());
         if (isset($config['auth_storage'][$routeParams['namespace']])) {
             $storageNamespace = $config['auth_storage'][$routeParams['namespace']];
         }
@@ -80,9 +87,6 @@ class Module
 
         $isAllowed = false;
 
-        //$role = 'ADMIN';
-        //var_dump($role, $routeParams['controller'], $routeParams['action']);
-
         if ($acl->hasResource($routeParams['controller'])
             && $acl->isAllowed($role, $routeParams['controller'], $routeParams['action'])
         ) {
@@ -100,7 +104,6 @@ class Module
             $isAllowed = true;
         }
 
-        //var_dump($isAllowed);
         return $isAllowed;
     }
 

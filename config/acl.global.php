@@ -36,6 +36,7 @@ return array(
                 ),
             ),
         ),
+        'skip_namespace' => array(),
     ),
 
     'redirect' => array(
