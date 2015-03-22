@@ -80,9 +80,6 @@ class Module
 
         $isAllowed = false;
 
-        //$role = 'ADMIN';
-        //var_dump($role, $routeParams['controller'], $routeParams['action']);
-
         if ($acl->hasResource($routeParams['controller'])
             && $acl->isAllowed($role, $routeParams['controller'], $routeParams['action'])
         ) {
@@ -100,7 +97,6 @@ class Module
             $isAllowed = true;
         }
 
-        //var_dump($isAllowed);
         return $isAllowed;
     }
 
