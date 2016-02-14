@@ -31,7 +31,7 @@ class User implements UserEntityInterface
     /**
      * @var string $password
      *
-     * @ORM\Column(name="password_hash", type="string", length=25, nullable=false)
+     * @ORM\Column(name="password_hash", type="string", length=60, nullable=false)
      */
     protected $password;
 
