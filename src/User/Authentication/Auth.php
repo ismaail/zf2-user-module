@@ -17,7 +17,7 @@ class Auth
     protected $service;
 
     /**
-     * @var \Zend\Authentication\Adapter\AdapterInterface
+     * @var \Zend\Authentication\Adapter\AdapterInterface|\DoctrineModule\Authentication\Adapter\ObjectRepository
      */
     protected $adapter;
 
@@ -59,7 +59,7 @@ class Auth
      */
     public function setIdentityValue($value)
     {
-        $this->adapter->setIdentityValue($value);
+        $this->adapter->setIdentity($value);
     }
 
     /**
@@ -69,7 +69,7 @@ class Auth
      */
     public function setCredentialValue($value)
     {
-        $this->adapter->setCredentialValue($value);
+        $this->adapter->setCredential($value);
     }
 
     /**
